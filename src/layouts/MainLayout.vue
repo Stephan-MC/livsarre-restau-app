@@ -27,3 +27,9 @@
 import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouterOutlet } from '@ionic/vue';
 import { homeOutline, cartOutline, settingsOutline,personOutline  } from 'ionicons/icons';
 </script>
+
+<style scoped>
+ion-tab-bar{
+  @apply shadow-lg bg-white border-t rounded-t-[0.625rem]
+}
+</style>
