@@ -5,16 +5,21 @@
         <Icon v-if="leftIcon" :class="['Input-LeftIcon', classes?.leftIcon]" :path="leftIcon" />
       </slot>
 
-      <div class="grow">
-        <input :type="type" :placeholder="placeholder" :value="modelValue" :class="['Input-Input', classes?.input]"
-          :required="required" @input="
-            $emit('update:model-value', ($event.target as HTMLInputElement).value)
-            " />
-      </div>
+      <select :placeholder="placeholder" :value="modelValue" :class="[
+        'focus:outline-none h-full grow bg-transparent SelectInut',
+        classes?.input
+      ]" :required="required" @input="
+  $emit('update:model-value', ($event.target as HTMLInputElement).value)
+  ">
+        <option v-for="option in options" :value="option.value" :key="`${option.label}-${option.value}`"
+          :class="[classes?.option, 'Select-Option']">
+          {{ option.label }}
+        </option>
+      </select>
 
       <slot name="rightIcon">
-        <Icon v-if="rightIcon || props.type == 'password'" :class="[
-          'h-4 aspect-square cursor-pointer text-primary InputRightIcon',
+        <Icon v-if="rightIcon" :class="[
+          'cursor-pointer text-primary SelectIcon Select-RightIcon',
           classes?.rightIcon
         ]" :path="rightIcon ?? type == 'password' ? mdiEyeOutline : mdiEyeOffOutline
   " @click="type = type == 'password' ? 'text' : 'password'" tabindex="0" />
@@ -31,16 +36,17 @@ import { mdiEyeOutline, mdiEyeOffOutline } from '@mdi/js'
 interface InputProps {
   leftIcon?: string
   rightIcon?: string
-  type?: string
   placeholder?: string
   modelValue: string | number | null
   required: boolean
   error?: string | null
+  options: { label: string; value?: string | null }[]
   classes?: {
     leftIcon?: string
-    input: string
-    rightIcon: string
-    error: string
+    input?: string
+    rightIcon?: string
+    error?: string
+    option?: string
   }
 }
 
