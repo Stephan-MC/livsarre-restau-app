@@ -1,0 +1,20 @@
+@use 'fonts';
+@use 'components/form';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+@layer base {
+    :root {
+    }
+
+    body {
+        @apply font-roboto;
+    }
+}
+
+@layer components{
+     @include form.Input
+}

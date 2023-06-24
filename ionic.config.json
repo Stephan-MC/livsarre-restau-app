@@ -1,5 +1,7 @@
 {
   "name": "LivsarreMobile",
-  "integrations": {},
+  "integrations": {
+    "sass": {}
+  },
   "type": "vue-vite"
 }
