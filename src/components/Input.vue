@@ -1,12 +1,12 @@
 <template>
   <div class="Input">
-    <div class="Input-Wrapper">
+    <div :class="[ 'Input-Wrapper', { 'p-1': size == 'sm', 'p-2': size == 'md', 'p-3': size == 'lg' } ]">
       <slot name="leftIcon">
-        <Icon v-if="leftIcon" :class="['Input-LeftIcon', classes?.leftIcon]" :path="leftIcon" />
+      <Icon v-if="leftIcon" :class="['Input-LeftIcon', classes?.leftIcon, { 'h-6': size == 'sm', 'h-8': size == 'md', 'h-10': size == 'lg'}]" :path="leftIcon" />
       </slot>
 
       <div class="grow">
-        <input :type="type" :placeholder="placeholder" :value="modelValue" :class="['Input-Input', classes?.input]"
+        <input :type="type" :placeholder="placeholder" :value="modelValue" :class="['Input-Input', classes?.input ]"
           :required="required" @input="
             $emit('update:model-value', ($event.target as HTMLInputElement).value)
             " />
@@ -14,8 +14,9 @@
 
       <slot name="rightIcon">
         <Icon v-if="rightIcon || props.type == 'password'" :class="[
-          'h-4 aspect-square cursor-pointer text-primary InputRightIcon',
-          classes?.rightIcon
+          'cursor-pointer text-primary InputRightIcon InputIcon',
+          classes?.rightIcon,
+          {'h-6': size == 'sm', 'h-8': size == 'md', 'h-10': size == 'lg'}
         ]" :path="rightIcon ?? type == 'password' ? mdiEyeOutline : mdiEyeOffOutline
   " @click="type = type == 'password' ? 'text' : 'password'" tabindex="0" />
       </slot>
@@ -32,6 +33,7 @@ interface InputProps {
   leftIcon?: string
   rightIcon?: string
   type?: string
+  size?: 'sm' | 'md' | 'lg'
   placeholder?: string
   modelValue: string | number | null
   required: boolean
@@ -45,7 +47,8 @@ interface InputProps {
 }
 
 const props = withDefaults(defineProps<InputProps>(), {
-  type: 'text'
+  type: 'text',
+  size: 'md'
 })
 
 const type = ref(props.type)
