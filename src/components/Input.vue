@@ -1,8 +1,8 @@
 <template>
   <div class="Input">
-    <div :class="[ 'Input-Wrapper', { 'p-1': size == 'sm', 'p-2': size == 'md', 'p-3': size == 'lg' } ]">
+    <div :class="[ 'Input-Wrapper', classes.wrapper, { 'p-1': size == 'sm', 'p-2': size == 'md', 'p-3': size == 'lg' } ]">
       <slot name="leftIcon">
-      <Icon v-if="leftIcon" :class="['Input-LeftIcon', classes?.leftIcon, { 'h-6': size == 'sm', 'h-8': size == 'md', 'h-10': size == 'lg'}]" :path="leftIcon" />
+        <Icon v-if="leftIcon" :class="['Input-LeftIcon', classes?.leftIcon, { 'h-8': size == 'sm', 'h-10': size == 'md', 'h-14': size == 'lg'}]" :path="leftIcon" />
       </slot>
 
       <div class="grow">
@@ -39,10 +39,12 @@ interface InputProps {
   required: boolean
   error?: string | null
   classes?: {
+    icon?: string
     leftIcon?: string
-    input: string
-    rightIcon: string
-    error: string
+    rightIcon?: string
+    wrapper?: string
+    input?: string
+    error?: string
   }
 }
 
