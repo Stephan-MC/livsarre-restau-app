@@ -7,7 +7,7 @@
         }
 
         &-Input {
-            @apply border-transparent focus:outline-none focus:ring-0 focus:border-transparent h-full grow bg-transparent;
+            @apply border-transparent focus:outline-none focus:ring-0 focus:border-transparent h-full w-full bg-transparent;
         }
 
         &-LeftIcon {

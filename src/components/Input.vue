@@ -5,10 +5,12 @@
         <Icon v-if="leftIcon" :class="['Input-LeftIcon', classes?.leftIcon]" :path="leftIcon" />
       </slot>
 
-      <input :type="type" :placeholder="placeholder" :value="modelValue" :class="['Input-Input', classes?.input]"
-        :required="required" @input="
-          $emit('update:model-value', ($event.target as HTMLInputElement).value)
-          " />
+      <div class="grow">
+        <input :type="type" :placeholder="placeholder" :value="modelValue" :class="['Input-Input', classes?.input]"
+          :required="required" @input="
+            $emit('update:model-value', ($event.target as HTMLInputElement).value)
+            " />
+      </div>
 
       <slot name="rightIcon">
         <Icon v-if="rightIcon || props.type == 'password'" :class="[
