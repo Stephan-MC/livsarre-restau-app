@@ -16,5 +16,6 @@
 }
 
 @layer components{
-     @include form.Input
+     @include form.Input; 
+     @include form.Select;
 }
