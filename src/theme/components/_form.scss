@@ -3,6 +3,24 @@
         @apply flex flex-col gap-1;
 
         &-Wrapper {
+            @apply gap-1 items-center flex bg-primary/[0.05] rounded-md placeholder:text-white border border-primary/[0.15] focus-within:border-transparent hover:border-transparent outline-primary/40 outline-1 hover:outline focus-within:outline focus-within:shadow focus-within:shadow-primary transition duration-300 overflow-hidden;
+        }
+
+        &-Input {
+            @apply border-transparent focus:outline-none focus:ring-0 focus:border-transparent h-full w-full bg-transparent p-0;
+        }
+
+        &-LeftIcon {
+            @apply h-4 aspect-square;
+        }
+    }
+}
+
+@mixin Select {
+    .Select {
+        @apply flex flex-col gap-1;
+
+        &-Wrapper {
             @apply gap-1 items-center flex bg-primary/[0.05] rounded-md placeholder:text-white border border-primary/20 focus-within:border-transparent hover:border-transparent outline-primary outline-1 hover:outline focus-within:outline focus-within:shadow focus-within:shadow-primary transition duration-300 overflow-hidden;
         }
 

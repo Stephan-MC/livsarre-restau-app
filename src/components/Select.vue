@@ -2,24 +2,27 @@
   <div class="Select">
     <div class="Select-Wrapper">
       <slot name="leftIcon">
-        <Icon v-if="leftIcon" :class="['Select-LeftIcon Select-Icon', classes?.leftIcon]" :path="leftIcon" />
+        <Icon v-if="leftIcon" :class="['Select-LeftIcon Select-Icon', classes.icon, classes?.leftIcon]" :path="leftIcon" />
       </slot>
 
-      <select :placeholder="placeholder" :class="[classes?.select,
-        'focus:outline-none h-full grow bg-transparent SelectInut',
-      ]" :required="required" @input="
-  $emit('update:model-value', ($event.target as HTMLInputElement).value)
-  ">
-        <option v-for="option in options" :value="option.value" :key="`${option.label}-${option.value}`"
-          :class="[classes?.option, 'Select-Option']">
-          {{ option.label }}
-        </option>
-      </select>
+      <div class="grow">
+        <select :placeholder="placeholder" :class="[classes?.select,
+          'focus:outline-none h-full w-full bg-transparent SelectInut',
+        ]" :required="required" @input="
+    $emit('update:model-value', ($event.target as HTMLInputElement).value)
+    ">
+          <option v-for="option in options" :value="option.value" :key="`${option.label}-${option.value}`"
+            :class="[classes?.option, 'Select-Option']">
+            {{ option.label }}
+          </option>
+        </select>
+      </div>  
 
       <slot name="rightIcon">
         <Icon v-if="rightIcon" :class="[
-          'cursor-pointer text-primary SelectIcon Select-RightIcon',
-          classes?.rightIcon
+          'SelectIcon Select-RightIcon',
+          classes?.icon,
+          classes?.rightIcon,
         ]" :path="rightIcon ?? type == 'password' ? mdiEyeOutline : mdiEyeOffOutline
   " @click="type = type == 'password' ? 'text' : 'password'" tabindex="0" />
       </slot>
@@ -41,6 +44,7 @@ interface InputProps {
   error?: string | null
   options: { label: string; value?: string | null }[]
   classes?: {
+    icon?: string 
     leftIcon?: string
     select?: string
     rightIcon?: string
