@@ -2,45 +2,82 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-title>Order</ion-title>
+        <ion-title>
+          <div class="flex items-center justify-between">
+            <ion-img :src="logoFull" class="h-10"/>
+            <h1>Order</h1>
+          </div>
+        </ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
       <ion-header collapse="condense">
         <ion-toolbar>
-          <ion-title size="large">Order</ion-title>
+          <div class="flex items-center justify-between">
+            <ion-img :src="logoFull" class="h-10"/>
+            <ion-title>Order</ion-title>
+          </div>
         </ion-toolbar>
       </ion-header>
       <ContentContainer>
         <div class="h-[200px] border rounded-[0.625rem] shadow-lg "></div>
-        <form action="" class="text-sm mt-3">
-          <div class="flex gap-2">
-            <div class="bg-red-500 flex-1">Box 1</div>
-            <div class="bg-red-500 flex-1">Box 2</div>
-          </div>
+        <form action="" class="text-sm my-6 space-y-5">
           <div class="flex gap-2 ">
-            <Input type="text" class="flex-1" :classes="{ input: 'max-w-full'}">
-              <template #leftIcon>
-                <ion-icon :icon="text" />
+            <Input type="text" placeholder="Nom">
+              <template #rightIcon>
+                <ion-icon :icon="personOutline"/>
               </template>
             </Input>
-            <Input type="text" class="flex-1" :classes="{ input: 'max-w-full'}"/>
+            <Input type="text" placeholder="Prenom">
+              <template #rightIcon>
+                <ion-icon :icon="personOutline"/>
+              </template>
+            </Input>
+          </div>
 
+          <div>
+            <Input type="text" placeholder="Adresse">
+              <template #rightIcon>
+                <ion-icon :icon="locationOutline"/>
+              </template>
+            </Input>
           </div>
           <div>
-            <ion-input type="text" placeholder="adress"/>
           </div>
           <div>
-            <ion-input placeholder="+1 (xxx) xxx-xxxx"></ion-input>
+            <Input type="tel" placeholder="+33 XXXX XXXX">
+              <template #rightIcon>
+                <ion-icon :icon="callOutline"/>
+              </template>
+            </Input>
           </div>
           <div>
-            <ion-input type="number" placeholder="somme a regle"/>
+            <Input type="number" placeholder="Nombre de colis">
+              <template #rightIcon>
+                <ion-icon :icon="cubeOutline"/>
+              </template>
+            </Input>
           </div>
           <div>
-            <ion-input type="number" placeholder="instruction de livraison"/>
+            <Input type="text" placeholder="Instruction de livraison">
+              <template #rightIcon>
+                <ion-icon :icon="handRightOutline" />
+              </template>
+            </Input>
+          </div>
+          <div>
+            <Input type="text" placeholder="La somme a regle par le client">
+              <template #rightIcon>
+                <ion-icon :icon="logoEuro" />
+              </template>
+            </Input>
           </div>
           <div class="border-b">
-            <ion-input type="number" placeholder="method de paiement"/>
+            <Input type="text" placeholder="Methode de paiement">
+              <template #rightIcon>
+                <ion-icon :icon="logoPaypal" />
+              </template>
+            </Input>
           </div>
           <ion-button type="submit">envoyer la commande</ion-button>
         </form>
@@ -50,10 +87,11 @@
 </template>
 
 <script setup lang="ts">
-import {IonPage, IonHeader, IonToolbar, IonTitle, IonContent} from '@ionic/vue';
+import logoFull from '@/assets/images/livsarre-logo-full.png'
+import {IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonIcon} from '@ionic/vue';
+import {personOutline, locationOutline,callOutline,cubeOutline,logoEuro,handRightOutline,logoPaypal} from "ionicons/icons"
 import ContentContainer from "@/components/ContentContainer.vue";
 import Input from "@/components/Input.vue";
-import { text } from 'ionicons/icons'
 
 </script>
 <style scoped>
