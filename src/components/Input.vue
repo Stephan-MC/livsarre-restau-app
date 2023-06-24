@@ -1,6 +1,6 @@
 <template>
   <div class="Input">
-    <div :class="[ 'Input-Wrapper', classes.wrapper, { 'p-1': size == 'sm', 'p-2': size == 'md', 'p-3': size == 'lg' } ]">
+    <div :class="[ 'Input-Wrapper', classes?.wrapper, { 'p-1': size == 'sm', 'p-2': size == 'md', 'p-3': size == 'lg' } ]">
       <slot name="leftIcon">
         <Icon v-if="leftIcon" :class="['Input-LeftIcon', classes?.leftIcon, { 'h-8': size == 'sm', 'h-10': size == 'md', 'h-14': size == 'lg'}]" :path="leftIcon" />
       </slot>
