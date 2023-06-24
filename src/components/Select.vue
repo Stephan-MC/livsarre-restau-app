@@ -1,13 +1,12 @@
 <template>
-  <div class="Input">
-    <div class="Input-Wrapper">
+  <div class="Select">
+    <div class="Select-Wrapper">
       <slot name="leftIcon">
-        <Icon v-if="leftIcon" :class="['Input-LeftIcon', classes?.leftIcon]" :path="leftIcon" />
+        <Icon v-if="leftIcon" :class="['Select-LeftIcon Select-Icon', classes?.leftIcon]" :path="leftIcon" />
       </slot>
 
-      <select :placeholder="placeholder" :value="modelValue" :class="[
+      <select :placeholder="placeholder" :class="[classes?.select,
         'focus:outline-none h-full grow bg-transparent SelectInut',
-        classes?.input
       ]" :required="required" @input="
   $emit('update:model-value', ($event.target as HTMLInputElement).value)
   ">
@@ -43,18 +42,14 @@ interface InputProps {
   options: { label: string; value?: string | null }[]
   classes?: {
     leftIcon?: string
-    input?: string
+    select?: string
     rightIcon?: string
     error?: string
     option?: string
   }
 }
 
-const props = withDefaults(defineProps<InputProps>(), {
-  type: 'text'
-})
-
-const type = ref(props.type)
+withDefaults(defineProps<InputProps>(), {})
 </script>
 
 <style scoped></style>
